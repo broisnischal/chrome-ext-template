@@ -1,0 +1,49 @@
+{
+  "name": "chrome-ext-template",
+  "version": "1.0.0",
+  "description": "Template for chrome extension",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [
+    "chrome",
+    "extension",
+    "template"
+  ],
+  "author": {
+    "name": "Nischal Dahal",
+    "email": "nischaldahal01395@gmail.com",
+    "url": "https://nischal-dahal.com.np"
+  },
+  "contributors": [],
+  "scripts": {
+    "start": "tsc",
+    "watch": "concurrently \"tsc -w\" \"bun run hot-reload-server.ts\"",
+    "clean": "rimraf dist",
+    "copy-assets": "rsync -av --exclude 'tsconfig.json' --exclude 'src' --exclude 'dist' ./ dist/ && cp -r src/popup dist/src/",
+    "build": "bun run clean && bun run start && bun run copy-assets"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chokidar": "^1.7.5",
+    "@types/chrome": "^0.0.287",
+    "@types/ws": "^8.5.13",
+    "chokidar": "^4.0.3",
+    "concurrently": "^9.1.2",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "ws": "^8.18.0"
+  }
+}
