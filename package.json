@@ -29,9 +29,9 @@
   "contributors": [],
   "scripts": {
     "start": "tsc",
-    "watch": "concurrently \"tsc -w\" \"bun run hot-reload-server.ts\"",
+    "watch": "NODE_ENV=development concurrently \"tsc -w\" \"bun run hot-reload-server.ts\"",
     "clean": "rimraf dist",
-    "copy-assets": "rsync -av --exclude 'tsconfig.json' --exclude 'src' --exclude 'dist' ./ dist/ && cp -r src/popup dist/src/",
+    "copy-assets": "rsync -av --exclude 'tsconfig.json' --exclude 'dist' --exclude '*.ts' --exclude '*.tsx' --exclude '.git' ./ dist/ && rsync -av --exclude '*.ts' --exclude '*.tsx' src/ dist/src/",
     "build": "bun run clean && bun run start && bun run copy-assets"
   },
   "dependencies": {},

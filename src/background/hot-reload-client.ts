@@ -1,3 +1,4 @@
+console.log('Reloading chrome-ext-template');
 
 const WS_URL = 'ws://localhost:8080';
 
