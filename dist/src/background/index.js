@@ -1,1 +1,1 @@
-export {};
+import './extension.js';

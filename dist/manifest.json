@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json.schemastore.org/chrome-manifest",
+    "manifest_version": 3,
+    "name": "Chrome Extension",
+    "version": "1.0.0",
+    "description": "This is a template for chrome extension!",
+    "author": "Nischal Dahal",
+    "homepage_url": "https://github.com/broisnischal/chrome-ext-template",
+    "action": {
+        "default_title": "Chrome Template"
+    },
+    "background": {
+        "service_worker": "src/background/index.js",
+        "type": "module"
+    },
+    "permissions": [],
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ]
+}
