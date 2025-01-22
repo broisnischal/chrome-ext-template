@@ -8,7 +8,8 @@
     "homepage_url": "https://github.com/broisnischal/chrome-ext-template",
     "options_page": "src/options/options.html",
     "action": {
-        "default_title": "Chrome Template"
+        "default_title": "Chrome Template",
+        "default_popup": "src/popup/popup.html"
     },
     "background": {
         "service_worker": "src/background/index.js",
@@ -21,6 +22,14 @@
     ],
     "content_scripts": [
         {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/background/hot-reload-client.js"
+            ]
+        },
+        {
             "js": [
                 "src/content/index.js"
             ],
@@ -28,5 +37,8 @@
                 "https://github.com/*"
             ]
         }
-    ]
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    }
 }
