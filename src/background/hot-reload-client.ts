@@ -1,24 +1,22 @@
-console.log('Reloading chrome-ext-template');
-
-const WS_URL = 'ws://localhost:8080';
+const WS_URL = "ws://localhost:8080";
 
 try {
-    const socket = new WebSocket(WS_URL);
+  const socket = new WebSocket(WS_URL);
 
-    socket.onopen = () => {
-        console.log('[Hot Reload] Connected to server');
-    };
+  socket.onopen = () => {
+    console.log("[Hot Reload] Connected to server");
+  };
 
-    socket.onmessage = (event) => {
-        if (event.data === 'reload') {
-            console.log('[Hot Reload] Reloading extension...');
-            chrome.runtime.reload(); // Reloads the entire extension
-        }
-    };
+  socket.onmessage = (event) => {
+    if (event.data === "reload") {
+      console.log("[Hot Reload] Reloading extension...");
+      chrome.runtime.reload(); // Reloads the entire extension
+    }
+  };
 
-    socket.onclose = () => {
-        console.log('[Hot Reload] Disconnected from server');
-    };
+  socket.onclose = () => {
+    console.log("[Hot Reload] Disconnected from server");
+  };
 } catch (error) {
-    console.log('[Hot Reload] Development server not running');
+  console.log("[Hot Reload] Development server not running");
 }

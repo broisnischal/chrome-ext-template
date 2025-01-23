@@ -29,10 +29,14 @@
   "contributors": [],
   "scripts": {
     "start": "tsc",
-    "watch": "lsof -ti:8080 | xargs kill -9 && NODE_ENV=development concurrently \"tsc -w\" \"bun run hot-reload-server.ts\"",
+    "cmd": "kill-port --silent 8080 2>/dev/null || true && cross-env NODE_ENV=development bun run hot-reload-server.ts",
+    "watch": "npm-run-all cmd",
     "clean": "rimraf dist",
-    "copy-assets": "rsync -av --exclude 'tsconfig.json' --exclude 'dist' --exclude '*.ts' --exclude '*.tsx' --exclude '.git' --exclude 'node_modules' --exclude '.github' ./ dist/",
-    "build": "bun run clean && bun run start && bun run copy-assets"
+    "copy-assets": "copyfiles \"src/**/*\" \"manifest.json\" \"public/**/*\" \"!**/*.ts\" \"!**/*.tsx\" dist",
+    "build": "npm-run-all clean start copy-assets",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm-run-all build changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
@@ -41,6 +45,10 @@
     "@types/ws": "^8.5.13",
     "chokidar": "^4.0.3",
     "concurrently": "^9.1.2",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "kill-port": "^2.0.1",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^6.0.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
