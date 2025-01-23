@@ -31,7 +31,7 @@
     "start": "tsc",
     "watch": "kill-port --silent 8080 2>/dev/null || true && cross-env NODE_ENV=development bun run hot-reload-server.ts",
     "clean": "rimraf dist",
-    "copy-assets": "copyfiles \"src/**/*\" \"manifest.json\" \"public/**/*\" \"!**/*.ts\" \"!**/*.tsx\" dist",
+    "copy-assets": "copyfiles \"src/**/*.{js,html,css,svg,png,jpg,jpeg,gif,json}\" \"manifest.json\" \"public/**/*\" dist",
     "build": "npm-run-all clean start copy-assets",
     "changeset": "changeset",
     "publish": "changeset publish",

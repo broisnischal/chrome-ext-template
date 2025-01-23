@@ -1,44 +1,33 @@
 {
-    "$schema": "https://json.schemastore.org/chrome-manifest",
-    "manifest_version": 3,
-    "name": "Chrome Extension",
-    "version": "0.0.1",
-    "description": "This is a template for chrome extension!",
-    "author": "Nischal Dahal",
-    "homepage_url": "https://github.com/broisnischal/chrome-ext-template",
-    "options_page": "src/options/options.html",
-    "action": {
-        "default_title": "Chrome Template",
-        "default_popup": "src/popup/popup.html"
+  "$schema": "https://json.schemastore.org/chrome-manifest",
+  "manifest_version": 3,
+  "name": "Chrome Extension",
+  "version": "0.0.1",
+  "description": "This is a template for chrome extension!",
+  "author": "Nischal Dahal",
+  "homepage_url": "https://github.com/broisnischal/chrome-ext-template",
+  "options_page": "src/options/options.html",
+  "action": {
+    "default_title": "Chrome Template",
+    "default_popup": "src/popup/popup.html"
+  },
+  "background": {
+    "service_worker": "src/background/index.js",
+    "type": "module"
+  },
+  "permissions": [],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/background/hot-reload-client.js"]
     },
-    "background": {
-        "service_worker": "src/background/index.js",
-        "type": "module"
-    },
-    "permissions": [],
-    "host_permissions": [
-        "http://*/*",
-        "https://*/*"
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "src/background/hot-reload-client.js"
-            ]
-        },
-        {
-            "js": [
-                "src/content/index.js"
-            ],
-            "matches": [
-                "https://github.com/*"
-            ]
-        }
-    ],
-    "content_security_policy": {
-        "extension_pages": "script-src 'self'; object-src 'self'"
+    {
+      "js": ["src/contentScript/index.js"],
+      "matches": ["https://github.com/*"]
     }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }
