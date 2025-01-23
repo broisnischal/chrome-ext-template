@@ -1,5 +1,5 @@
 {
-  "name": "chrome-ext-template",
+  "name": "chrome-extension-template",
   "version": "1.0.0",
   "description": "Template for chrome extension",
   "main": "index.js",
@@ -29,22 +29,23 @@
   "contributors": [],
   "scripts": {
     "start": "tsc",
-    "cmd": "kill-port --silent 8080 2>/dev/null || true && cross-env NODE_ENV=development bun run hot-reload-server.ts",
-    "watch": "npm-run-all cmd",
+    "watch": "kill-port --silent 8080 2>/dev/null || true && cross-env NODE_ENV=development bun run hot-reload-server.ts",
     "clean": "rimraf dist",
     "copy-assets": "copyfiles \"src/**/*\" \"manifest.json\" \"public/**/*\" \"!**/*.ts\" \"!**/*.tsx\" dist",
     "build": "npm-run-all clean start copy-assets",
     "changeset": "changeset",
+    "publish": "changeset publish",
     "version": "changeset version",
-    "release": "npm-run-all build changeset publish"
+    "release": "npm-run-all build changeset publish",
+    "clean:nees": "rimraf .changeset .github"
   },
   "dependencies": {},
   "devDependencies": {
+    "@changesets/cli": "^2.27.11",
     "@types/chokidar": "^1.7.5",
     "@types/chrome": "^0.0.287",
     "@types/ws": "^8.5.13",
     "chokidar": "^4.0.3",
-    "concurrently": "^9.1.2",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "kill-port": "^2.0.1",
@@ -52,6 +53,7 @@
     "rimraf": "^6.0.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "ws": "^8.18.0"
+    "ws": "^8.18.0",
+    "@types/bun": "latest"
   }
 }
