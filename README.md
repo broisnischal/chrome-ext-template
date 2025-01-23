@@ -13,3 +13,5 @@ practices and modern web technologies.
 - Essential boilerplate code
 - Code linting and formatting
 - Type checking
+
+lsof -ti:8080 | xargs kill -9

@@ -28,22 +28,32 @@
   },
   "contributors": [],
   "scripts": {
+    "rollup:build": "rollup --config",
+    "rollup:watch": "rollup --config --watch",
+    "lint": "eslint *.js src/**/*",
     "start": "tsc",
-    "watch": "lsof -ti:8080 | xargs kill -9 && NODE_ENV=development concurrently \"tsc -w\" \"bun run hot-reload-server.ts\"",
+    "watch": "NODE_ENV=development concurrently \"tsc -w\" \"bun run hot-reload-server.ts\"",
     "clean": "rimraf dist",
     "copy-assets": "rsync -av --exclude 'tsconfig.json' --exclude 'dist' --exclude '*.ts' --exclude '*.tsx' --exclude '.git' --exclude 'node_modules' --exclude '.github' ./ dist/",
     "build": "bun run clean && bun run start && bun run copy-assets"
   },
   "dependencies": {},
   "devDependencies": {
+    "@rollup/plugin-typescript": "^12.1.2",
     "@types/chokidar": "^1.7.5",
     "@types/chrome": "^0.0.287",
     "@types/ws": "^8.5.13",
     "chokidar": "^4.0.3",
     "concurrently": "^9.1.2",
+    "esbuild": "^0.24.2",
+    "htm": "^3.1.1",
+    "preact": "^10.25.4",
+    "preact-cli": "^3.5.1",
     "rimraf": "^6.0.1",
+    "rolldown": "^1.0.0-beta.1",
+    "rollup-plugin-auto-reload": "^1.0.3",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "ws": "^8.18.0"
   }
 }
