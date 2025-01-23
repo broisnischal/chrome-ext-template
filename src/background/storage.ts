@@ -1,3 +1,3 @@
 // decoupling storages
 
-// import { browser } from 'webextension-polyfill-ts'; 
+// import { browser } from 'webextension-polyfill-ts';
